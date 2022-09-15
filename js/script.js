@@ -1,4 +1,4 @@
-
+/*
 // Variable globales 
 let opcion;
 let billetera = 0 ;
@@ -129,6 +129,8 @@ function mostrarMensaje(msj){
 //Menu bienvendia
 alert(`Bienvendio a tu billetera ${nombreBilletera}`);
 
+
+
 //Opciones
 
 do {
@@ -184,5 +186,85 @@ do {
 
     }
 } while (opcion !== 5)
+
+*/
+
+//Cargar saldo
+let plataIngresada = 0 ;
+
+class CargaSaldo {
+    constructor(cantidad, tipoTarjeta, numeroTarjeta){
+        this.cantidad = cantidad;
+        this.tipoTarjeta = tipoTarjeta;
+        this.numeroTarjeta = numeroTarjeta;
+    }
+}
+
+let botonCargar = document.getElementById("botonCargaSaldo");
+botonCargar.addEventListener("click", cargarSaldo);
+
+function cargarSaldo (){
+    let cantidad = document.getElementById("cantidad").value;
+    let tipoTarjeta = document.getElementById("tarjeta").value;
+    let numeroTarjeta = document.getElementById("numeroTarjeta").value;
+    let cargaSaldo1 = new CargaSaldo(cantidad, tipoTarjeta, numeroTarjeta);
+    plataIngresada = Number(cargaSaldo1.cantidad);
+    console.log(plataIngresada);
+    console.log(cargaSaldo1);
+    mostrarSaldoActual(cargaSaldo1);
+
+}
+
+function mostrarSaldoActual (cargaSaldo1) {
+    let formulario = document.getElementById("recarga");
+    formulario.innerHTML = "";
+
+    let nuevoContenido = document.createElement("div");
+    nuevoContenido.innerHTML = `<h3> Se acredito su saldo actual de $${cargaSaldo1.cantidad}, realizado con la tarjeta de ${cargaSaldo1.tipoTarjeta} finalizada en ${cargaSaldo1.numeroTarjeta} </h3>`;
+
+    nuevoContenido.className = "bille-total"
+    formulario.appendChild(nuevoContenido);
+}
+
+
+
+
+// Pagar Servicio
+
+let pagarServicio = document.getElementById("botonPagar");
+pagarServicio.onclick = ()=>{
+    let servicio = document.getElementById("servicios");
+    let precioAPagar = Number(servicio.options[servicio.selectedIndex].value);
+    let suma = plataIngresada - precioAPagar;
+
+    let formulario2 = document.getElementById("pagarServicios");
+    formulario2.innerHTML = "";
+
+    if (plataIngresada > precioAPagar ){
+        let nuevoContenido2 = document.createElement("div");
+    nuevoContenido2.innerHTML = `<h3> Se realizo el pago de $${precioAPagar} por el servicio seleccionado. El saldo actual de la cuenta es de $${suma} </h3>`;
+
+    nuevoContenido2.className = "bille-total"
+    formulario2.appendChild(nuevoContenido2);
+
+    } else{
+        let nuevoContenido3 = document.createElement("div");
+    nuevoContenido3.innerHTML = `<h3> No se pudo realizar el pago de $${precioAPagar} por el servicio seleccionado, porque saldo actual de la cuenta es insuficiente. Saldo actual $${plataIngresada} </h3>`;
+
+    nuevoContenido3.className = "bille-total"
+    formulario2.appendChild(nuevoContenido3);
+    }
+
+   
+
+
+}
+
+
+
+
+
+
+
 
 

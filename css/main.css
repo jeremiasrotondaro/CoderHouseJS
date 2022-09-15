@@ -1,0 +1,48 @@
+#menuprinci{
+    background-color: blue;
+}
+#menuprinci ul li a{
+    color: white;
+    font-size: 25px;
+}
+body{
+    background-color: rgb(93, 212, 239);
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+
+}
+
+#tituloo{
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+
+}
+
+.recarga-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+}
+
+.bille-total{
+    text-align: center;
+}
+
+#pagarServicios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+

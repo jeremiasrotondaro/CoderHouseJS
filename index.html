@@ -5,9 +5,96 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafío 1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    
 </head>
 <body>
+
+    <header>
+        <nav id="menuprinci">
+            <ul class="nav justify-content-center" >
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#">Perfil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Cargar saldo</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pagar facturas</a>
+                </li>
+              </ul>
+        </nav>
+    </header>
+
+
     
+
+
+    <main>
+
+        <div class="div-tit">
+            <h1 id="tituloo">Billetera JR-Pay</h1>
+        </div>
+
+        <section id="recarga">
+            <h2>Recargar saldo en billetera</h2>
+            <div class="form">
+                <div class="recarga-form">
+                    <label for="cantidad">Ingrese el saldo a cargar</label>
+                    <input type="text" class="" name="cantidad" id="cantidad" placeholder="$200">
+                    <label for="tarjeta">Ingrese el tipo de tarjeta</label>
+                    <input type="text" class="" name="tarjeta" id="tarjeta" placeholder="Debito/Credito">
+                    <label for="numeroTarjeta">Ingrese los ultimos 4 numero de su tarjeta</label>
+                    <input type="text" class="" name="numeroTarjeta" id="numeroTarjeta" placeholder="0000">
+                    <button id="botonCargaSaldo">Cargar saldo </button>
+                </div>
+            </div>
+            
+        </section>
+
+
+
+        </section>
+
+        <div>
+            <form id="pagarServicios">
+
+                <h3>Seleccionar el servicio a abonar</h3>
+                <p><select id="servicios">
+                    <option value="2500">Servicio de cable $2500</option>
+                    <option value="300">Servicio de luz $300</option>
+                    <option value="800">Servicio de agua $800</option>
+                    <option value="900">Servicio de gas $800</option>
+                </select></p>
+                <button type="button" id="botonPagar" class="btn btn-primary btn-lg" value="Elegir servicio">Pagar servicio</button>
+
+                
+    
+            </form>
+
+        </div>
+
+       
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./js/script.js" ></script>
 </body>
 </html>
