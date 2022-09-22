@@ -188,7 +188,7 @@ do {
 } while (opcion !== 5)
 
 */
-
+/*
 //Cargar saldo
 let plataIngresada = 0 ;
 
@@ -208,57 +208,325 @@ function cargarSaldo (){
     let tipoTarjeta = document.getElementById("tarjeta").value;
     let numeroTarjeta = document.getElementById("numeroTarjeta").value;
     let cargaSaldo1 = new CargaSaldo(cantidad, tipoTarjeta, numeroTarjeta);
-    plataIngresada = Number(cargaSaldo1.cantidad);
-    console.log(plataIngresada);
-    console.log(cargaSaldo1);
+    plataIngresada = Number(cargaSaldo1.cantidad) + plataIngresada;
     mostrarSaldoActual(cargaSaldo1);
 
 }
 
 function mostrarSaldoActual (cargaSaldo1) {
-    let formulario = document.getElementById("recarga");
-    formulario.innerHTML = "";
+    if (cantidad.value > 0){
+        let formulario = document.getElementById("recarga");
+        formulario.innerHTML = "";
+    
+        let nuevoContenido = document.createElement("div");
+        nuevoContenido.innerHTML = `
+        <h3> Se acredito la carga de $${cargaSaldo1.cantidad}, realizado con la tarjeta de ${cargaSaldo1.tipoTarjeta} finalizada en ${cargaSaldo1.numeroTarjeta}. Su saldo actual es de $${plataIngresada} </h3>
+        <button id="botonVolver"><a href="../paginas/carga.html">Volver a cargar</a></button>`
+        ;
+    
+        nuevoContenido.className = "bille-total"
+        formulario.appendChild(nuevoContenido);
+    } else {
+        let formulario = document.getElementById("recarga");
+        formulario.innerHTML = "";
+    
+        let nuevoContenido = document.createElement("div");
+        nuevoContenido.innerHTML = `
+        <h3> No se pudo realizar la carga de saldo. Su saldo actual es ${plataIngresada}. Intentelo nuevamente.</h3>
+        <button id="botonVolver"><a href="../paginas/carga.html">Volver a cargar</a></button>`
+        ;
+    
+        nuevoContenido.className = "bille-total"
+        formulario.appendChild(nuevoContenido);
+        
+    }
+  
+}*/
 
-    let nuevoContenido = document.createElement("div");
-    nuevoContenido.innerHTML = `<h3> Se acredito su saldo actual de $${cargaSaldo1.cantidad}, realizado con la tarjeta de ${cargaSaldo1.tipoTarjeta} finalizada en ${cargaSaldo1.numeroTarjeta} </h3>`;
 
-    nuevoContenido.className = "bille-total"
-    formulario.appendChild(nuevoContenido);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener(`DOMContentLoaded`, ()=> {
+    if (localStorage.getItem("dineroEnCuenta")){
+        dineroEnCuenta = JSON.parse(localStorage.getItem("dineroEnCuenta"));
+        cargarSaldo();
+    }
+});
+
+
+let tipoTarjeta = "";
+let numeroTarjeta = ""; 
+let dineroEnCuenta = 0;
+
+let saldoActual = document.getElementById("saldoActualBille");
+
+
+let botonCargar = document.getElementById("botonCargaSaldo");
+botonCargar.addEventListener("click",cargarSaldo);
+// Cargar saldo
+function cargarSaldo (){
+    dineroIngresado = Number(document.getElementById("dineroIngresado").value);
+    tipoTarjeta = document.getElementById("tarjeta").value;
+    numeroTarjeta = document.getElementById("numeroTarjeta").value;
+    dineroEnCuenta = dineroEnCuenta + dineroIngresado;
+    mostrarSaldoActual();
+    
+
+    localStorage.setItem(`dineroEnCuenta`, JSON.stringify(dineroEnCuenta));
+
+
+
+};
+function mostrarSaldoActual (){
+    if (dineroIngresado >= 1){
+
+        alert(`Se acredito la carga de $${dineroIngresado}, realizado con la tarjeta de ${tipoTarjeta} finalizada en ${numeroTarjeta}. Su saldo actual es de $${dineroEnCuenta}`);
+
+        let formulario = document.getElementById("ultimosMov");
+        
+        let nuevoContenido = document.createElement("div");
+        nuevoContenido.innerHTML = `<ul><li> <h3> Se acredito la carga de $${dineroIngresado}, realizado con la tarjeta de ${tipoTarjeta} finalizada en ${numeroTarjeta}. Su saldo actual es de $${dineroEnCuenta} </h3></li></ul>`
+       
+        ;
+        
+        nuevoContenido.className = "bille-total"
+        formulario.appendChild(nuevoContenido);
+
+        saldoActual.innerText = dineroEnCuenta;
+
+        dineroIngresado = document.getElementById("dineroIngresado").value = "";
+        tipoTarjeta = document.getElementById("tarjeta").value = "";
+        numeroTarjeta = document.getElementById("numeroTarjeta").value = "";
+        
+
+
+        
+    } else {
+
+        alert(`No se pudo realizar la carga de saldo. Su saldo actual es ${dineroEnCuenta}. Intentelo nuevamente.`)
+
+
+        let formulario = document.getElementById("ultimosMov");
+        
+    
+        let nuevoContenido = document.createElement("div");
+        nuevoContenido.innerHTML = `<ul><li><h3> No se pudo realizar la carga de saldo. Su saldo actual es ${dineroEnCuenta}. Intentelo nuevamente.</h3></li></ul>`
+        ;
+    
+        nuevoContenido.className = "bille-total"
+        formulario.appendChild(nuevoContenido);
+
+        saldoActual.innerText = dineroEnCuenta;
+        
+        dineroIngresado = document.getElementById("dineroIngresado").value = "";
+        tipoTarjeta = document.getElementById("tarjeta").value = "";
+        numeroTarjeta = document.getElementById("numeroTarjeta").value = "";
+        
+    }
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// ARRAYS
+const servicios = [
+    {id: 1, nombre: `Agua`, empresa: `Aysa`, precio: 2500, img: `../img/pagos.webp` },
+    {id: 2, nombre: `Luz`, empresa: `Edenor`, precio: 1800, img: `../img/posnet.webp` },
+    {id: 3, nombre: `Gas`, empresa: `Metrogas`, precio: 2400, img: `../img/posnet.webp` },
+    {id: 4, nombre: `Internet`, empresa: `Cablevisión`, precio: 2300, img: `../img/posnet.webp` },
+    {id: 5, nombre: `Cable`, empresa: `Telecentro`, precio: 2700, img: `../img/posnet.webp` },
+    {id: 6, nombre: `Tarjeta de crédito VISA`, empresa: `Santander Rio`, precio: 22300, img: `../img/posnet.webp` },
+    {id: 7, nombre: `Tarjeta de crédito VisA`, empresa: `BBVA`, precio: 25500, img: `../img/posnet.webp` },
+    {id: 8, nombre: `Tarjeta de crédito AMEX`, empresa: `Hipotecario`, precio: 10100, img: `../img/posnet.webp` },
+
+]
+
+
+let carrito = [];
+
+document.addEventListener(`DOMContentLoaded`, ()=> {
+    if (localStorage.getItem("carrito")){
+        carrito = JSON.parse(localStorage.getItem("carrito"));
+        actualizarCarrito();
+    }
+});
+
+
+const pagarServicios = document.getElementById("pagarServicios");
+
+const espacioCarrito = document.getElementById("espacioCarrito");
+
+const contadorCarrito = document.getElementById("contadorCarrito");
+
+const precioTotal2 = document.getElementById("precioTotal");
+let precioTotal ;
+
+
+
+
+
+
+const botonVaciar = document.getElementById("vaciar-carrito");
+botonVaciar.addEventListener("click", ()=> {
+    carrito.length = 0;
+    actualizarCarrito();
+})
+
+
+servicios.forEach((servicio) => {
+    const div = document.createElement("div");
+    div.classList.add("servicio");
+    div.innerHTML = `
+    <img src=${servicio.img} alt = "">
+    <h3> ${servicio.nombre}</h3>
+    <p>${servicio.empresa}</p>
+    <p class= "precioServicio">Precio : $${servicio.precio}</p>
+    <button id="agregar${servicio.id}" class"boton-agregar"> Agregar servicio a pagar</button>
+    ` ;
+
+    pagarServicios.appendChild(div);
+
+    const botonAgregar = document.getElementById(`agregar${servicio.id}`);
+    botonAgregar.addEventListener("click", ()=> {
+        agregarAlCarrito(servicio.id);
+    });
+
+
+
+});
+
+
+const agregarAlCarrito = (servId) =>{
+    const servicioSelec = servicios.find((serv) => serv.id === servId);
+    carrito.push(servicioSelec);
+    actualizarCarrito();
+    
+};
+
+const eliminarDelCarrito = (servId) =>{
+    const servicioSelec = carrito.find((serv) => serv.id === servId);
+
+    const indice = carrito.indexOf(servicioSelec);
+    carrito.splice(indice, 1);
+
+    actualizarCarrito();
 }
+
+
+
+const actualizarCarrito = () => {
+
+    espacioCarrito.innerHTML="";
+
+    carrito.forEach((serv) => {
+        const div = document.createElement (`div`);
+        div.className = (`servicioEnCarrito`);
+        div.innerHTML = `
+        <p>${serv.nombre}</p>
+        <p> Precio: ${serv.precio}</p>
+        <p> Cantidad: <span id= "cantidad"> ${serv.cantidad} </span></p>
+        <button onclick = "eliminarDelCarrito(${serv.id})" class = "botonEliminar"</button>
+        `;
+
+        espacioCarrito.appendChild(div);
+
+        localStorage.setItem(`carrito`, JSON.stringify(carrito));
+
+    });
+    contadorCarrito.innerText = carrito.length;
+    precioTotal = carrito.reduce ((acumulador, serv) => acumulador + serv.precio, 0 );
+    precioTotal2.innerText = precioTotal;
+
+
+    
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 // Pagar Servicio
+let pagarServ = document.getElementById("pagar");
+pagarServ.addEventListener("click", pagar)
+function pagar(){
+    if (dineroEnCuenta > precioTotal ){
+        dineroEnCuenta = dineroEnCuenta - precioTotal;
+        console.log(dineroEnCuenta);
+    } else {
 
-let pagarServicio = document.getElementById("botonPagar");
-pagarServicio.onclick = ()=>{
-    let servicio = document.getElementById("servicios");
-    let precioAPagar = Number(servicio.options[servicio.selectedIndex].value);
-    let suma = plataIngresada - precioAPagar;
-
-    let formulario2 = document.getElementById("pagarServicios");
-    formulario2.innerHTML = "";
-
-    if (plataIngresada > precioAPagar ){
-        let nuevoContenido2 = document.createElement("div");
-    nuevoContenido2.innerHTML = `<h3> Se realizo el pago de $${precioAPagar} por el servicio seleccionado. El saldo actual de la cuenta es de $${suma} </h3>`;
-
-    nuevoContenido2.className = "bille-total"
-    formulario2.appendChild(nuevoContenido2);
-
-    } else{
-        let nuevoContenido3 = document.createElement("div");
-    nuevoContenido3.innerHTML = `<h3> No se pudo realizar el pago de $${precioAPagar} por el servicio seleccionado, porque saldo actual de la cuenta es insuficiente. Saldo actual $${plataIngresada} </h3>`;
-
-    nuevoContenido3.className = "bille-total"
-    formulario2.appendChild(nuevoContenido3);
     }
 
-   
 
+    mostrarPagos();
 
+};
+
+function mostrarPagos (){
+    let formulario = document.getElementById("ultimosMov");
+
+    if (dineroEnCuenta > precioTotal ){
+
+        alert(`Se realizo el pago de $${precioTotal} por los servicios seleccionados. El saldo actual de la cuenta es de $${dineroEnCuenta}`)
+
+        let nuevoContenido2 = document.createElement("div");
+        nuevoContenido2.innerHTML = `<h3> Se realizo el pago de $${precioTotal} por los servicios seleccionados. El saldo actual de la cuenta es de $${dineroEnCuenta} </h3>`;
+
+        nuevoContenido2.className = "bille-total";
+        formulario.appendChild(nuevoContenido2);
+
+    } else{
+
+        alert(`No se pudo realizar el pago de $${precioTotal} por los servicios seleccionados, porque el saldo actual de la cuenta es insuficiente. Saldo actual $${dineroEnCuenta}`)
+        let nuevoContenido2 = document.createElement("div");
+        nuevoContenido2.innerHTML = `<h3> No se pudo realizar el pago de $${precioTotal} por los servicios seleccionados, porque el saldo actual de la cuenta es insuficiente. Saldo actual $${dineroEnCuenta} </h3>`;
+
+        nuevoContenido2.className = "bille-total"
+        formulario.appendChild(nuevoContenido2);
+    }
 }
+
 
 
 
