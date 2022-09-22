@@ -445,8 +445,7 @@ const actualizarCarrito = () => {
         div.innerHTML = `
         <p>${serv.nombre}</p>
         <p> Precio: ${serv.precio}</p>
-        <p> Cantidad: <span id= "cantidad"> ${serv.cantidad} </span></p>
-        <button onclick = "eliminarDelCarrito(${serv.id})" class = "botonEliminar"</button>
+        <button onclick = "eliminarDelCarrito(${serv.id})" class = "botonEliminar">X</button>
         `;
 
         espacioCarrito.appendChild(div);

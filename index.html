@@ -26,24 +26,15 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#ultimosMov">Ultimos movimientos</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#carritoPagar">Carrito</a>
+                </li>
               </ul>
               <p>Saldo Actual : $<span id="saldoActualBille"></span> </p>
         </nav>
-        <button id="botonCarrito"> <span id="contadorCarrito">0</span></button>
     </header>
 
-    <div class="contenedorCarrito">
-      <div class="estiloCarrito">
-        <h3>Carrito</h3>
-        <button id="carritoCerrar">-</button>
-        <div id="espacioCarrito">
-
-        </div>
-        <p class="precioServicio">Precio total : $<span id="precioTotal">0</span></p>
-        <button id="vaciar-carrito" class="boton-agregar" >Vaciar carrito</button>
-        <button id="pagar">Pagar</button>
-      </div>
-    </div>
+   
 
 
     
@@ -108,15 +99,31 @@
       </section>
 
 
-      <div id="pagarServicios">
+      <div id="elegirServ" >
         <h1>Pagar Servicios</h1>
-
+        <div id="pagarServicios">
+  
+        </div>
       </div>
+      
 
 
 
 
-
+      <div id="carritoPagar" class="contenedorCarrito">
+        <div class="estiloCarrito">
+          <h3>Carrito</h3>
+          <button id="botonCarrito">Servicios en carrito: <span id="contadorCarrito">0</span></button>
+  
+          <button id="carritoCerrar">-</button>
+          <div id="espacioCarrito">
+  
+          </div>
+          <p class="precioServicio">Precio total : $<span id="precioTotal">0</span></p>
+          <button id="vaciar-carrito" class="boton-agregar" >Vaciar carrito</button>
+          <button id="pagar">Pagar</button>
+        </div>
+      </div>
 
 
 
