@@ -11,28 +11,93 @@
 </head>
 <body>
 
-    <header>
-        <nav id="menuprinci">
-            <ul class="nav justify-content-center" >
-                <li class="nav-item">
-                  <a class="nav-link" href="./index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#recarga">Cargar saldo</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#pagarServicios">Servicios para abonar</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#ultimosMov">Ultimos movimientos</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#carritoPagar">Carrito</a>
-                </li>
-              </ul>
-              <p>Saldo Actual : $<span id="saldoActualBille"></span> </p>
-        </nav>
-    </header>
+  <header>
+    <nav id="menuprinci">
+      <div id="menu-desplegable">
+          <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+            Menu <i class="fa-solid fa-bars"></i>
+          </button>
+          
+          <div  class="offcanvas offcanvas-start " data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="staticBackdropLabel">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+
+              <div id="menu-datosUsuario">
+                <p>NombreUsuario</p>
+              </div>
+
+
+              <div id="menu-saldoCarrito">
+                <p>Saldo Actual : $<span id="saldoActualBille"></span> </p>
+              </div>
+
+              <div id="menu-recarga">
+                <a href="#recarga">Recargar saldo </a>
+              </div>
+
+              <div id="menu-pagarServicios" class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Opeaciones disponibles
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#elegirServ">Pagar Servicios</a></li>
+                  <li><a class="dropdown-item" href="#">Pagar Resumen Tarjeta</a></li>
+                  <li><a class="dropdown-item" href="#">Cargar sube</a></li>
+                </ul>
+              </div>
+          
+
+
+
+              
+
+            </div>
+          </div>
+      </div>
+
+
+
+
+      <div class="div-tit">
+        <h1 id="tituloo">Billetera JR-Pay</h1>
+      </div>
+
+        
+
+
+
+      <div id="botonCarrito">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Carrito</button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Pagar servicios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <div id="carritoPagar" class="contenedorCarrito">
+                  <div class="estiloCarrito">
+                    <button id="botonCarrito">Servicios en carrito: <span id="contadorCarrito">0</span></button>
+            
+                    <button id="carritoCerrar">-</button>
+                    <div id="espacioCarrito">
+            
+                    </div>
+                    <p class="precioServicio">Precio total : $<span id="precioTotal">0</span></p>
+                    <button id="vaciar-carrito" class="boton-agregar" >Vaciar carrito</button>
+                    <button id="pagar">Pagar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+
+
+    </nav>
+  </header>
 
    
 
@@ -40,13 +105,9 @@
     
 
 
-    <main>
+  <main>
 
-
-      <div class="div-tit">
-          <h1 id="tituloo">Billetera JR-Pay</h1>
-      </div>
-        <div class="banner-princi">
+    <div class="banner-princi">
           <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="true">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -74,7 +135,7 @@
             </button>
           </div>
 
-        </div>
+    </div>
 
       
 
@@ -82,7 +143,7 @@
 
        
 
-      <section id="recarga">
+    <section id="recarga">
         <h2>Recargar saldo en billetera</h2>
         <div class="form">
             <div class="recarga-form">
@@ -96,59 +157,42 @@
             </div>
         </div>
           
-      </section>
+    </section>
 
 
-      <div id="elegirServ" >
+    <div id="elegirServ" >
         <h1>Pagar Servicios</h1>
         <div id="pagarServicios">
   
         </div>
-      </div>
+    </div>
       
 
 
 
 
-      <div id="carritoPagar" class="contenedorCarrito">
-        <div class="estiloCarrito">
-          <h3>Carrito</h3>
-          <button id="botonCarrito">Servicios en carrito: <span id="contadorCarrito">0</span></button>
-  
-          <button id="carritoCerrar">-</button>
-          <div id="espacioCarrito">
-  
-          </div>
-          <p class="precioServicio">Precio total : $<span id="precioTotal">0</span></p>
-          <button id="vaciar-carrito" class="boton-agregar" >Vaciar carrito</button>
-          <button id="pagar">Pagar</button>
-        </div>
-      </div>
-
-
-
-      <section id="ultimosMov">
+    <section id="ultimosMov">
         <h2>Ultimos movimientos</h2>
-      </section>
+    </section>
 
 
 
 
 
-    </main>
-
-
-
-
-
-
+  </main>
 
 
 
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./js/script.js" ></script>
+
+
+
+
+
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="./js/script.js" ></script>
 </body>
 </html>
