@@ -1,11 +1,11 @@
 [
-    {"id": 2, "nombre": "Luz", "empresa": "Edenor", "precio": 1800, "img": "../img/posnet.webp" },
-    {"id": 3, "nombre": "Gas", "empresa": "Metrogas", "precio": 2400, "img": "../img/posnet.webp" },
-    {"id": 4, "nombre": "Internet", "empresa": "Cablevisión", "precio": 2300, "img": "../img/posnet.webp" },
-    {"id": 5, "nombre": "Cable", "empresa": "Telecentro", "precio": 2700, "img": "../img/posnet.webp" },
-    {"id": 1, "nombre": "Agua", "empresa": "Aysa", "precio": 2500, "img": "../img/pagos.webp" },
-    {"id": 6, "nombre": "Tarjeta de crédito VISA", "empresa": "Santander Rio", "precio": 22300, "img": "../img/posnet.webp" },
-    {"id": 7, "nombre": "Tarjeta de crédito ViSA", "empresa": "BBVA", "precio": 25500, "img": "../img/posnet.webp" },
-    {"id": 8, "nombre": "Tarjeta de crédito AMEX", "empresa": "Hipotecario", "precio": 10100, "img": "../img/posnet.webp" }
+    {"id": 2, "nombre": "Luz", "empresa": "Edenor", "precio": 1800, "img": "" },
+    {"id": 3, "nombre": "Gas", "empresa": "Metrogas", "precio": 2400, "img": "" },
+    {"id": 4, "nombre": "Internet", "empresa": "Cablevisión", "precio": 2300, "img": "" },
+    {"id": 5, "nombre": "Cable", "empresa": "Telecentro", "precio": 2700, "img": "" },
+    {"id": 1, "nombre": "Agua", "empresa": "Aysa", "precio": 2500, "img": "" },
+    {"id": 6, "nombre": "Tarjeta de crédito VISA", "empresa": "Santander Rio", "precio": 22300, "img": "" },
+    {"id": 7, "nombre": "Tarjeta de crédito ViSA", "empresa": "BBVA", "precio": 25500, "img": "" },
+    {"id": 8, "nombre": "Tarjeta de crédito AMEX", "empresa": "Hipotecario", "precio": 10100, "img": "" }
 ]
 
