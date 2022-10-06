@@ -1,14 +1,10 @@
 
-
-
-
 document.addEventListener(`DOMContentLoaded`, ()=> {
     if (localStorage.getItem("dineroEnCuenta")){
         dineroEnCuenta = JSON.parse(localStorage.getItem("dineroEnCuenta"));
         cargarSaldo();
     }
 });
-
 
 
 
@@ -115,24 +111,58 @@ function mostrarSaldoActual (){
 
 
 
+// Pintar servicios 
 
 
+const pagarServicios = document.getElementById("pagarServicios");
+
+fetch("/desafio1/js/serviciosbase.json")
+.then((res) => res.json())
+.then((servicios) =>{
+    servicios.forEach((servicio) => {
+        const div = document.createElement("div");
+        div.classList.add("servicio");
+        div.innerHTML = `
+        <img src=${servicio.img} alt = "">
+        <h3> ${servicio.nombre}</h3>
+        <p>${servicio.empresa}</p>
+        <p class= "precioServicio">Precio : $${servicio.precio}</p>
+        <button id="agregar${servicio.id}" class"boton-agregar"> Agregar servicio a pagar</button>
+        ` ;
+    
+        pagarServicios.appendChild(div);
+    
+        const botonAgregar = document.getElementById(`agregar${servicio.id}`);
+        botonAgregar.addEventListener("click", ()=> {
+            agregarAlCarrito(servicio.id);
+            Swal.fire({
+                icon: 'success',
+                title: 'Agregado al carrito',
+                text: `Se agrego el servicios de ${servicio.nombre}, por un importe de $${servicio.precio}`,
+                footer: `<span class = "rojo">Su saldo actual es $${dineroEnCuenta}</span>`,
+                grow: 'row',
+                timer: 3000,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false, 
+            });
+        });
+    
+    
+    
+    });
+
+    const agregarAlCarrito = (servId) =>{
+        const servicioSelec = servicios.find((serv) => serv.id === servId);
+        carrito.push(servicioSelec);
+    
+    
+        actualizarCarrito();
+        
+    };
 
 
-
-
-// ARRAYS SERVICIOS
-const servicios = [
-    {id: 1, nombre: `Agua`, empresa: `Aysa`, precio: 2500, img: `../img/pagos.webp` },
-    {id: 2, nombre: `Luz`, empresa: `Edenor`, precio: 1800, img: `../img/posnet.webp` },
-    {id: 3, nombre: `Gas`, empresa: `Metrogas`, precio: 2400, img: `../img/posnet.webp` },
-    {id: 4, nombre: `Internet`, empresa: `Cablevisión`, precio: 2300, img: `../img/posnet.webp` },
-    {id: 5, nombre: `Cable`, empresa: `Telecentro`, precio: 2700, img: `../img/posnet.webp` },
-    {id: 6, nombre: `Tarjeta de crédito VISA`, empresa: `Santander Rio`, precio: 22300, img: `../img/posnet.webp` },
-    {id: 7, nombre: `Tarjeta de crédito ViSA`, empresa: `BBVA`, precio: 25500, img: `../img/posnet.webp` },
-    {id: 8, nombre: `Tarjeta de crédito AMEX`, empresa: `Hipotecario`, precio: 10100, img: `../img/posnet.webp` },
-
-]
+})
 
 
 
@@ -149,7 +179,6 @@ document.addEventListener(`DOMContentLoaded`, ()=> {
 });
 
 
-const pagarServicios = document.getElementById("pagarServicios");
 
 const espacioCarrito = document.getElementById("espacioCarrito");
 
@@ -166,51 +195,12 @@ const botonVaciar = document.getElementById("vaciar-carrito");
 botonVaciar.addEventListener("click", ()=> {
     carrito.length = 0;
     actualizarCarrito();
+
+    localStorage.setItem(`carrito`, JSON.stringify(carrito));
 })
 
 
-servicios.forEach((servicio) => {
-    const div = document.createElement("div");
-    div.classList.add("servicio");
-    div.innerHTML = `
-    <img src=${servicio.img} alt = "">
-    <h3> ${servicio.nombre}</h3>
-    <p>${servicio.empresa}</p>
-    <p class= "precioServicio">Precio : $${servicio.precio}</p>
-    <button id="agregar${servicio.id}" class"boton-agregar"> Agregar servicio a pagar</button>
-    ` ;
 
-    pagarServicios.appendChild(div);
-
-    const botonAgregar = document.getElementById(`agregar${servicio.id}`);
-    botonAgregar.addEventListener("click", ()=> {
-        agregarAlCarrito(servicio.id);
-        Swal.fire({
-            icon: 'success',
-            title: 'Agregado al carrito',
-            text: `Se agrego el servicios de ${servicio.nombre}, por un importe de $${servicio.precio}`,
-            footer: `<span class = "rojo">Su saldo actual es $${dineroEnCuenta}</span>`,
-            grow: 'row',
-            timer: 3000,
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false, 
-        });
-    });
-
-
-
-});
-
-
-const agregarAlCarrito = (servId) =>{
-    const servicioSelec = servicios.find((serv) => serv.id === servId);
-    carrito.push(servicioSelec);
-
-
-    actualizarCarrito();
-    
-};
 
 const eliminarDelCarrito = (servId) =>{
     const servicioSelec = carrito.find((serv) => serv.id === servId);
@@ -299,6 +289,10 @@ function mostrarPagos (){
         carrito.length = 0;
         actualizarCarrito();
 
+
+        localStorage.setItem(`carrito`, JSON.stringify(carrito));
+        localStorage.setItem(`dineroEnCuenta`, JSON.stringify(dineroEnCuenta));
+
     } else if (dineroEnCuenta < precioTotal && precioTotal > 1) {
 
 
@@ -320,6 +314,8 @@ function mostrarPagos (){
 
         nuevoContenido2.className = "bille-total"
         formulario.appendChild(nuevoContenido2);
+
+        
     } else{
         Swal.fire({
             icon: 'question',
