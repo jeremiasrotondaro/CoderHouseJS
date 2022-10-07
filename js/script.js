@@ -1,4 +1,6 @@
 
+
+
 document.addEventListener(`DOMContentLoaded`, ()=> {
     if (localStorage.getItem("dineroEnCuenta")){
         dineroEnCuenta = JSON.parse(localStorage.getItem("dineroEnCuenta"));
