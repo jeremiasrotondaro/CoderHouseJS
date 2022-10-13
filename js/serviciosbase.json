@@ -1,11 +1,11 @@
 [
-    {"id": 1, "nombre": "Agua", "empresa": "Aysa", "precio": 2500, "img": "" },
-    {"id": 2, "nombre": "Luz", "empresa": "Edenor", "precio": 1800, "img": "" },
-    {"id": 3, "nombre": "Gas", "empresa": "Metrogas", "precio": 2400, "img": "" },
-    {"id": 4, "nombre": "Internet", "empresa": "Cablevisión", "precio": 2300, "img": "" },
-    {"id": 5, "nombre": "Cable", "empresa": "Telecentro", "precio": 2700, "img": "" },
-    {"id": 6, "nombre": "Tarjeta de crédito VISA", "empresa": "Santander Rio", "precio": 22300, "img": "" },
-    {"id": 7, "nombre": "Tarjeta de crédito ViSA", "empresa": "BBVA", "precio": 25500, "img": "" },
-    {"id": 8, "nombre": "Tarjeta de crédito AMEX", "empresa": "Hipotecario", "precio": 10100, "img": "" }
+    {"id": 1, "nombre": "Agua", "empresa": "Aysa", "precio": 2500, "img": "/desafio1/img/aysa.png" },
+    {"id": 2, "nombre": "Luz", "empresa": "Edenor", "precio": 1800, "img": "/desafio1/img/edenor.png" },
+    {"id": 3, "nombre": "Gas", "empresa": "Metrogas", "precio": 2400, "img": "/desafio1/img/metrogas.jpg" },
+    {"id": 4, "nombre": "Internet", "empresa": "Cablevisión", "precio": 2300, "img": "/desafio1/img/fibertel.jpg" },
+    {"id": 5, "nombre": "Cable", "empresa": "Flow", "precio": 2700, "img": "/desafio1/img/flow.jpg" },
+    {"id": 6, "nombre": "Tarjeta de crédito VISA", "empresa": "Santander Rio", "precio": 22300, "img": "/desafio1/img/santander.jpg" },
+    {"id": 7, "nombre": "Tarjeta de crédito ViSA", "empresa": "BBVA", "precio": 25500, "img": "/desafio1/img/bbva.png" },
+    {"id": 8, "nombre": "Tarjeta de crédito AMEX", "empresa": "Hipotecario", "precio": 10100, "img": "/desafio1/img/hipotecario.webp" }
 ]
 

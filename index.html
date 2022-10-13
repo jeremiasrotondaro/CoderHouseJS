@@ -27,11 +27,6 @@
             </div>
             <div class="offcanvas-body">
 
-              <div id="menu-datosUsuario">
-                <p>NombreUsuario</p>
-              </div>
-
-
               <div id="menu-saldoCarrito">
                 <p>Saldo Actual : $<span id="saldoActualBille"></span> </p>
               </div>
@@ -41,14 +36,11 @@
               </div>
 
               <div id="menu-pagarServicios" class="dropdown mt-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                  Opeaciones disponibles
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#elegirServ">Pagar Servicios</a></li>
-                  <li><a class="dropdown-item" href="#">Pagar Resumen Tarjeta</a></li>
-                  <li><a class="dropdown-item" href="#">Cargar sube</a></li>
-                </ul>
+               <a href="#elegirServ">Seleccionar servicios</a>
+              </div>
+
+              <div id="menu-ultimosMov" class="dropdown mt-3">
+               <a href="#ultimosMov">Ultimos movimientos</a>
               </div>
           
 
@@ -68,23 +60,19 @@
       </div>
 
         
-
-
 <!--Desplegable carrito-->
       <div id="botonCarrito">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Carrito</button>
+            <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Carrito</button>
 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Pagar servicios</h5>
+                <h5 class="offcanvas-title" id="offcanvasRightLabel"> <p id="botonCarrito">Servicios en carrito: <span id="contadorCarrito">0</span></p></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
                 <div id="carritoPagar" class="contenedorCarrito">
                   <div class="estiloCarrito">
-                    <button id="botonCarrito">Servicios en carrito: <span id="contadorCarrito">0</span></button>
             
-                    <button id="carritoCerrar">-</button>
                     <div id="espacioCarrito">
             
                     </div>

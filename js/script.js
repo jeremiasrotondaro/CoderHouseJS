@@ -1,3 +1,17 @@
+// Mensaje beta 
+
+setTimeout(()=>{
+    Swal.fire({
+        title: 'Recuerde que esto es una beta para una app de pagos electrónicos',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown '
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp '
+        }
+      })
+}, 8000);
+
 
 
 
@@ -48,7 +62,8 @@ function mostrarSaldoActual (){
             timer: 2500,
             toast: true,
             position: 'top-end',
-            showConfirmButton: false, 
+            showConfirmButton: false,
+            timerProgressBar: true, 
         });
 
 
@@ -85,6 +100,7 @@ function mostrarSaldoActual (){
             toast: true,
             position: 'top-end',
             showConfirmButton: false, 
+            timerProgressBar: true,
         });
 
 
@@ -147,6 +163,7 @@ fetch("/desafio1/js/serviciosbase.json")
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false, 
+                timerProgressBar: true,
             });
         });
     
@@ -187,7 +204,7 @@ const espacioCarrito = document.getElementById("espacioCarrito");
 const contadorCarrito = document.getElementById("contadorCarrito");
 
 const precioTotal2 = document.getElementById("precioTotal");
-let precioTotal ;
+let precioTotal = 0 ;
 
 
 
@@ -238,8 +255,6 @@ const actualizarCarrito = () => {
     precioTotal2.innerText = precioTotal;
 
 
-    
-
 };
 
 
@@ -249,26 +264,15 @@ const actualizarCarrito = () => {
 
 
 // PAGAR SERVICIOS
+
 let pagarServ = document.getElementById("pagar");
 pagarServ.addEventListener("click", pagar)
 function pagar(){
-    if (dineroEnCuenta > precioTotal ){
-        dineroEnCuenta = dineroEnCuenta - precioTotal; 
-    } else {
-
-    }
-
-
-    mostrarPagos();
-
-};
-
-
-function mostrarPagos (){
     let formulario = document.getElementById("ultimosMov");
 
-    if (dineroEnCuenta > precioTotal && precioTotal > 1){
-
+    if (dineroEnCuenta >= precioTotal && precioTotal > 1 ) {
+        dineroEnCuenta = dineroEnCuenta - precioTotal; 
+        saldoActual.innerText = dineroEnCuenta;
         Swal.fire({
             icon: 'success',
             title: 'Pago exitoso',
@@ -279,7 +283,7 @@ function mostrarPagos (){
             position: 'top-start',
             showConfirmButton: false, 
             
-        });
+        }); 
 
 
         let nuevoContenido2 = document.createElement("div");
@@ -291,14 +295,13 @@ function mostrarPagos (){
         carrito.length = 0;
         actualizarCarrito();
 
-
         localStorage.setItem(`carrito`, JSON.stringify(carrito));
         localStorage.setItem(`dineroEnCuenta`, JSON.stringify(dineroEnCuenta));
 
+
+
+
     } else if (dineroEnCuenta < precioTotal && precioTotal > 1) {
-
-
-
         Swal.fire({
             icon: 'error',
             title: 'Error en el pago',
@@ -330,12 +333,10 @@ function mostrarPagos (){
             
             
         });
-    }
-}
-
-
-
-
+    };
+    
+    
+};
 
 
 
