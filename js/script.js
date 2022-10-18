@@ -134,7 +134,7 @@ function mostrarSaldoActual (){
 
 const pagarServicios = document.getElementById("pagarServicios");
 
-fetch("./serviciosbase.json")
+fetch("/desafio1/js/serviciosbase.json")
 .then((res) => res.json())
 .then((servicios) =>{
     servicios.forEach((servicio) => {
