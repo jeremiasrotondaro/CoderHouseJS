@@ -129,7 +129,7 @@ function mostrarSaldoActual (){
 
 
 
-// Pintar servicios 
+// Pintar servicios json
 
 
 const pagarServicios = document.getElementById("pagarServicios");
